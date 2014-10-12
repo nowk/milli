@@ -8,7 +8,7 @@ Sometimes you just need milliseconds.
 ## Examples
 
     d := time.Date(2014, time.September, 11, 4, 31, 12, 500000000, time.UTC)
-    m := milli.GetTime(d)
+    m := milli.ParseTime(d)
 
     // m => 1410409872500
 
