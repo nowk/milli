@@ -17,3 +17,9 @@ func TestGetMillisecondValue(t *testing.T) {
 	m := GetMilliseconds(d)
 	assert.Equal(t, 500, m)
 }
+
+func TestMillisecondsToTime(t *testing.T) {
+	d := time.Date(2014, time.August, 15, 4, 31, 12, 500000000, time.UTC)
+	u := NewTime(int64(1408077072500))
+	assert.Equal(t, u, d)
+}

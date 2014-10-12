@@ -18,6 +18,11 @@ If you just want the millisecond value
 
     // m => 500
 
+To convert millisecond to time
+
+    t := milli.NewTime(1410409872500)
+    t.String() // => 2014-08-15 04:31:12.5 +0000 UTC 
+
 
 ## License
 
