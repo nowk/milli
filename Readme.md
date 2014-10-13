@@ -20,7 +20,11 @@ If you just want the millisecond value
 
 To convert millisecond to time
 
-    t := milli.NewTime(1410409872500)
+    t, err := milli.NewTime(1410409872500)
+    if err != nil {
+      // returns if value is not in millisecond
+    }
+    
     t.String() // => 2014-08-15 04:31:12.5 +0000 UTC 
 
 

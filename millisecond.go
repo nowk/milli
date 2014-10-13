@@ -1,6 +1,7 @@
 package milli
 
 import (
+	"errors"
 	"time"
 )
 
@@ -21,11 +22,22 @@ func GetMilliseconds(t time.Time) (n int) {
 	return int(m) % micro
 }
 
-// NewTime converts milliseconds to time, returns as UTC
-func NewTime(m int64) time.Time {
-	sec := m / int64(micro)
-	nsec := (m % int64(micro)) * milli
+const (
+	boundl  = int64(time.Second * time.Microsecond)
+	boundh  = boundl * 10
+	micro64 = int64(micro)
+)
 
-	t := time.Unix(sec, nsec)
-	return t.UTC()
+// NewTime converts milliseconds to time, returns as UTC
+// Must be milliseconds
+func NewTime(m int64) (t time.Time, err error) {
+	if m < boundl || m >= boundh {
+		return t, errors.New("error: number was not in milliseconds")
+	}
+
+	s := m / micro64
+	n := (m % micro64) * milli
+
+	t = time.Unix(s, n)
+	return t.UTC(), nil
 }
